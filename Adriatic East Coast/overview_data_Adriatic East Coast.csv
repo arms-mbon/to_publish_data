@@ -1,0 +1,4 @@
+Station,Country,ARMS_unit,Date_start,Date_end,Event_ID,Material Samples,Observations,Sequences,Associated Date,Created,Updated
+Adriatic East Coast,Italy,Ven3,2021-06-23,2022,ARMS_Adriatic East Coast_Ven3_20210623_00000000,0,0,0,0,2021-06-28 06:04:00.771468+00:00,2021-06-28 06:04:22.698088+00:00
+Adriatic East Coast,Italy,Ven1,2021-06-23,2022,ARMS_Adriatic East Coast_Ven1_20210623_00000000,0,0,0,0,2021-06-28 06:02:08.567860+00:00,2021-06-28 06:02:08.755450+00:00
+Adriatic East Coast,Italy,Ven2,2021-06-23,2022,ARMS_Adriatic East Coast_Ven2_20210623_00000000,0,0,0,0,2021-06-28 06:03:32.287769+00:00,2021-06-28 06:03:32.483750+00:00
