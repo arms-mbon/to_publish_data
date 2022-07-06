@@ -44,6 +44,7 @@ for sampling_area in json_data_loaded['sampling_areas']:
     observations_csv = []
     sequences_csv = []
     associated_data_csv = []
+    main_data_csv = []
     try:
         os.mkdir(os.path.join(output_dir, sampling_area['name']))
     except Exception as e:
@@ -178,6 +179,7 @@ for sampling_area in json_data_loaded['sampling_areas']:
                     "updated_at": updated
                 })
             
+            main_data_csv.append({'Station': station, 'Country': country, 'ARMS_unit': ARMS_unit, 'Date_start': date_start, 'Date_end': date_end, 'Event_ID': event_description, 'Material Samples': material_samples, 'Observations': observations, 'Sequences': sequences, 'Associated Date': associated_date, 'Created': created, 'Updated': updated})
             #append dictionary of data to main_csv_data
             main_csv_data.append({'Station': station, 'Country': country, 'ARMS_unit': ARMS_unit, 'Date_start': date_start, 'Date_end': date_end, 'Event_ID': event_description, 'Material Samples': material_samples, 'Observations': observations, 'Sequences': sequences, 'Associated Date': associated_date, 'Created': created, 'Updated': updated})
     with open(os.path.join(output_dir, sampling_area['name'],"material_samples_"+station+'.csv'), 'w', newline='') as csvfile:
@@ -210,9 +212,16 @@ for sampling_area in json_data_loaded['sampling_areas']:
             #
             data = {k: v.encode('cp850','replace').decode('cp850') for k, v in data.items()}
             writer.writerow(data)
+    
+    with open(os.path.join(output_dir, sampling_area['name'],"overview_data_"+station+'.csv'), 'w', newline='') as csvfile:
+        fieldnames = ['Station', 'Country', 'ARMS_unit', 'Date_start', 'Date_end', 'Event_ID', 'Material Samples', 'Observations', 'Sequences', 'Associated Date', 'Created', 'Updated']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for data in main_data_csv:
+            writer.writerow(data)
 
 #write the main.csv
-with open(os.path.join(output_dir, 'main.csv'), 'w', newline='') as csvfile:
+with open(os.path.join(output_dir, 'overview.csv'), 'w', newline='') as csvfile:
     fieldnames = ['Station', 'Country', 'ARMS_unit', 'Date_start', 'Date_end', 'Event_ID', 'Material Samples', 'Observations', 'Sequences', 'Associated Date', 'Created', 'Updated']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
